@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --foreground: 180 100% 90%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 180 100% 90%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 180 100% 90%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 60 100% 50%;
+    --secondary-foreground: 0 0% 5%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 180 50% 60%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 5%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 180 100% 20%;
+    --input: 0 0% 15%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.5rem;
+    
+    --neon-cyan: 180 100% 50%;
+    --neon-yellow: 60 100% 50%;
+    --neon-purple: 280 100% 60%;
+    --neon-pink: 330 100% 50%;
+    --void: 0 0% 3%;
+    --glow-cyan: 180 100% 50%;
+    --glow-yellow: 60 100% 50%;
+    --glow-pink: 330 100% 50%;
+    
+    --shadow-glow: 0 0 20px hsl(var(--neon-cyan) / 0.5);
+    --shadow-glow-yellow: 0 0 20px hsl(var(--neon-yellow) / 0.5);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 3%;
+    --foreground: 180 100% 90%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Retro Arcade Effects */
+@layer components {
+  /* CRT Scanlines Effect */
+  .crt-scanlines {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .crt-scanlines::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 50%,
+      rgba(0, 0, 0, 0.3) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+    animation: scanline-move 8s linear infinite;
+  }
+  
+  @keyframes scanline-move {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(4px);
+    }
+  }
+  
+  /* CRT Screen Flicker */
+  .crt-flicker {
+    animation: flicker 0.15s infinite alternate;
+  }
+  
+  @keyframes flicker {
+    0% {
+      opacity: 0.98;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Retro Grid Background */
+  .retro-grid {
+    background-image: 
+      linear-gradient(hsl(var(--neon-cyan) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--neon-cyan) / 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: grid-move 20s linear infinite;
+  }
+  
+  @keyframes grid-move {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50px 50px;
+    }
+  }
+  
+  /* Neon Border Animation */
+  .neon-border-animated {
+    position: relative;
+    border: 2px solid hsl(var(--neon-cyan));
+    box-shadow: 
+      0 0 10px hsl(var(--neon-cyan) / 0.5),
+      inset 0 0 10px hsl(var(--neon-cyan) / 0.2);
+    animation: neon-pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes neon-pulse {
+    0%, 100% {
+      box-shadow: 
+        0 0 10px hsl(var(--neon-cyan) / 0.5),
+        0 0 20px hsl(var(--neon-cyan) / 0.3),
+        inset 0 0 10px hsl(var(--neon-cyan) / 0.2);
+    }
+    50% {
+      box-shadow: 
+        0 0 20px hsl(var(--neon-cyan) / 0.8),
+        0 0 40px hsl(var(--neon-cyan) / 0.5),
+        0 0 60px hsl(var(--neon-cyan) / 0.3),
+        inset 0 0 20px hsl(var(--neon-cyan) / 0.3);
+    }
+  }
+  
+  /* Retro Text Glow */
+  .retro-glow {
+    text-shadow: 
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px currentColor,
+      0 0 80px currentColor;
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes glow-pulse {
+    0%, 100% {
+      text-shadow: 
+        0 0 10px currentColor,
+        0 0 20px currentColor,
+        0 0 40px currentColor;
+    }
+    50% {
+      text-shadow: 
+        0 0 20px currentColor,
+        0 0 40px currentColor,
+        0 0 60px currentColor,
+        0 0 100px currentColor;
+    }
+  }
+  
+  /* Neon Pink Glow */
+  .neon-glow-pink {
+    text-shadow: 
+      0 0 10px hsl(var(--neon-pink)),
+      0 0 20px hsl(var(--neon-pink)),
+      0 0 40px hsl(var(--neon-pink)),
+      0 0 80px hsl(var(--neon-pink) / 0.5);
+  }
+}

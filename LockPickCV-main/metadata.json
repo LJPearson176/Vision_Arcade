@@ -1,0 +1,7 @@
+{
+  "name": "Lock Pick Sim",
+  "description": "A realistic computer vision lock picking simulator. Use your hand to control the tools.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

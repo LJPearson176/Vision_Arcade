@@ -1,0 +1,7 @@
+{
+  "name": "Kong Climber",
+  "description": "A browser-native arcade game where you physically climb a skyscraper using your webcam. Powered by MediaPipe and React.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
